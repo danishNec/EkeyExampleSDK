@@ -23,6 +23,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXBuildFile section */
+		41A1B005301B522600F1CD54 /* EkeySDK in Frameworks */ = {isa = PBXBuildFile; productRef = 41A1B003301B522600F1CD54 /* EkeySDK */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		415F2F8A301B522400F1CD54 /* EkeyExampleSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EkeyExampleSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		415F2F97301B522600F1CD54 /* EkeyExampleSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EkeyExampleSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,7 +34,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		41A1B001301B522600F1CD54 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		41A1B001301B522600F1CD54 /* Exceptions for "EkeyExampleSDK" folder in "EkeyExampleSDK" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +47,7 @@
 		415F2F8C301B522400F1CD54 /* EkeyExampleSDK */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				41A1B001301B522600F1CD54 /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+				41A1B001301B522600F1CD54 /* Exceptions for "EkeyExampleSDK" folder in "EkeyExampleSDK" target */,
 			);
 			path = EkeyExampleSDK;
 			sourceTree = "<group>";
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A1B005301B522600F1CD54 /* EkeySDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = EkeyExampleSDK;
 			packageProductDependencies = (
+				41A1B003301B522600F1CD54 /* EkeySDK */,
 			);
 			productName = EkeyExampleSDK;
 			productReference = 415F2F8A301B522400F1CD54 /* EkeyExampleSDK.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 415F2F81301B522400F1CD54;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				41A1B002301B522600F1CD54 /* XCLocalSwiftPackageReference "EkeySDK" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 415F2F8B301B522400F1CD54 /* Products */;
 			projectDirPath = "";
@@ -624,6 +633,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		41A1B002301B522600F1CD54 /* XCLocalSwiftPackageReference "EkeySDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = EkeySDK;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		41A1B003301B522600F1CD54 /* EkeySDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EkeySDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 415F2F82301B522400F1CD54 /* Project object */;
 }

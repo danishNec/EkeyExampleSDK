@@ -1,15 +1,16 @@
-	//
+//
 //  ContentView.swift
 //  EkeyExampleSDK
 //
 //  Created by Syed Danish  on 30/07/2026.
 //
 
+
 import SwiftUI
+import UIKit
+import EkeySDK
 
 struct ContentView: View {
-    @State private var showingEkeyLogin = false
-
     var body: some View {
         VStack(spacing: 24) {
             Image(systemName: "globe")
@@ -20,7 +21,7 @@ struct ContentView: View {
                 .fontWeight(.semibold)
             Button {
                 print("Initiate Ekey Flow tapped")
-                showingEkeyLogin = true
+                initiateEkeyFlow()
             } label: {
                 Text("Initiate Ekey Flow")
                     .font(.headline)
@@ -49,12 +50,28 @@ struct ContentView: View {
             )
             .ignoresSafeArea()
         )
-        .sheet(isPresented: $showingEkeyLogin) {
-            EkeyLoginView { url in
-                print("Ekey login completed: \(url.absoluteString)")
-                showingEkeyLogin = false
+    }
+
+    private func initiateEkeyFlow() {
+        guard let presenter = UIApplication.shared.topViewController else { return }
+        Ekey.shared.initiateLogin(from: presenter) { result in
+            switch result {
+            case .completed(let redirectURL):
+                print("Ekey login completed: \(redirectURL.absoluteString)")
+            case .cancelled:
+                print("Ekey login cancelled")
             }
         }
+    }
+}
+
+private extension UIApplication {
+    var topViewController: UIViewController? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?
+            .rootViewController
     }
 }
 
