@@ -23,10 +23,9 @@ enum EkeyLoginConfig {
     static let customURLScheme = "necekey"
     static let focusUri = "\(customURLScheme)://callback"
     /// Per the integration guide's Environments section: production's App-to-App launch
-    /// domain is app.ekey.bh, while the test/UAT environment (used here) hands the
+    /// domain is app.ekey.bh, while the test/UAT environment (used here) hands t
     /// mobileLogin URL back on tools.test.ekey-b.com instead.
     static let eKeyAppToAppDomains = ["app.ekey.bh", "tools.test.ekey-b.com"]
-//danishgfdgfgdfgdfgdf
     static func makeAuthorizationRequest() -> EkeyAuthorizationRequest {
         let codeVerifier = randomURLSafeString(byteCount: 32)
         let codeChallenge = Data(SHA256.hash(data: Data(codeVerifier.utf8))).base64URLEncodedString()
