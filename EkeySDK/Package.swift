@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "EkeySDK",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v14)],
     products: [
         .library(name: "EkeySDK", type: .dynamic, targets: ["EkeySDK"])
     ],
