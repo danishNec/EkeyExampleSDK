@@ -25,6 +25,7 @@
 
 /* Begin PBXBuildFile section */
 		41A1B005301B522600F1CD54 /* EkeySDK in Frameworks */ = {isa = PBXBuildFile; productRef = 41A1B003301B522600F1CD54 /* EkeySDK */; };
+		41A1B006301B522600F1CD54 /* EkeySDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 41A1B003301B522600F1CD54 /* EkeySDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,20 @@
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		41A1B007301B522600F1CD54 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				41A1B006301B522600F1CD54 /* EkeySDK in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		415F2F87301B522400F1CD54 /* Frameworks */ = {
@@ -120,6 +135,7 @@
 				415F2F86301B522400F1CD54 /* Sources */,
 				415F2F87301B522400F1CD54 /* Frameworks */,
 				415F2F88301B522400F1CD54 /* Resources */,
+				41A1B007301B522600F1CD54 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

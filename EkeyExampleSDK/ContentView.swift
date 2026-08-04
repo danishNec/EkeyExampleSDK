@@ -60,6 +60,8 @@ struct ContentView: View {
                 print("Ekey login completed: \(redirectURL.absoluteString)")
             case .cancelled:
                 print("Ekey login cancelled")
+            case .failed(let error):
+                print("Ekey login failed: \(error)")
             }
         }
     }

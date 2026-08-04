@@ -4,10 +4,13 @@ import WebKit
 final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate {
     let webView: WKWebView
     private let onCompleted: (URL) -> Void
+    private let onFailed: (EkeyLoginError) -> Void
     private var didOpenEkeyApp = false
+    private var expectedState: String?
 
-    init(onCompleted: @escaping (URL) -> Void) {
+    init(onCompleted: @escaping (URL) -> Void, onFailed: @escaping (EkeyLoginError) -> Void) {
         self.onCompleted = onCompleted
+        self.onFailed = onFailed
         webView = WKWebView()
         super.init()
         webView.navigationDelegate = self
@@ -17,6 +20,7 @@ final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate 
     func start() {
         didOpenEkeyApp = false
         let request = EkeyAuthorizationRequestBuilder.makeRequest()
+        expectedState = request.state
         webView.load(URLRequest(url: request.url))
     }
 
@@ -63,7 +67,11 @@ final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate 
         let urlString = url.absoluteString
 
         if urlString.hasPrefix(EkeyLoginConfig.redirectUri) {
-            onCompleted(url)
+            if stateMatches(url) {
+                onCompleted(url)
+            } else {
+                onFailed(.stateMismatch)
+            }
             return true
         }
 
@@ -74,5 +82,16 @@ final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate 
         }
 
         return false
+    }
+
+    /// Guards against CSRF/session-mixup: redirect_uri's `state` must match the one generated
+    /// for this specific authorization request.
+    private func stateMatches(_ url: URL) -> Bool {
+        guard let expectedState else { return false }
+        let returnedState = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first(where: { $0.name == "state" })?
+            .value
+        return returnedState == expectedState
     }
 }

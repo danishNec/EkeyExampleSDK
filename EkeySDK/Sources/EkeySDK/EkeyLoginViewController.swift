@@ -4,9 +4,13 @@ final class EkeyLoginViewController: UIViewController {
     let webViewController: EkeyWebViewController
     private let onCancelled: () -> Void
 
-    init(onCompleted: @escaping (URL) -> Void, onCancelled: @escaping () -> Void) {
+    init(
+        onCompleted: @escaping (URL) -> Void,
+        onFailed: @escaping (EkeyLoginError) -> Void,
+        onCancelled: @escaping () -> Void
+    ) {
         self.onCancelled = onCancelled
-        webViewController = EkeyWebViewController(onCompleted: onCompleted)
+        webViewController = EkeyWebViewController(onCompleted: onCompleted, onFailed: onFailed)
         super.init(nibName: nil, bundle: nil)
         title = "Ekey Login"
         navigationItem.leftBarButtonItem = UIBarButtonItem(

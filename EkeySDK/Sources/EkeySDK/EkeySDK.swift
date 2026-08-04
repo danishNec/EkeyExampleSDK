@@ -16,6 +16,8 @@ import UIKit
 ///         // Send redirectURL's `code` + `state` to your back-end for token exchange.
 ///     case .cancelled:
 ///         break
+///     case .failed(let error):
+///         // e.g. .stateMismatch — reject the login, do not treat as success.
 ///     }
 /// }
 /// ```
@@ -35,6 +37,9 @@ public final class Ekey {
         let loginViewController = EkeyLoginViewController(
             onCompleted: { [weak self] url in
                 self?.finish { completion(.completed(redirectURL: url)) }
+            },
+            onFailed: { [weak self] error in
+                self?.finish { completion(.failed(error)) }
             },
             onCancelled: { [weak self] in
                 self?.finish { completion(.cancelled) }
