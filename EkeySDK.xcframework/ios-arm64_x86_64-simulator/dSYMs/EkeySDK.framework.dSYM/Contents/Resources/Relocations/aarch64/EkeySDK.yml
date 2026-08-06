@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/syeddanish/Library/Developer/Xcode/DerivedData/EkeySDK-cijbzibgalwxamdvmkwsgazyrrqa/Build/Intermediates.noindex/ArchiveIntermediates/EkeySDK/InstallationBuildProductsLocation/usr/local/lib/EkeySDK.framework/EkeySDK'
+binary-path:     '/Users/syeddanish/Desktop/NEC Job/EkeyExampleSDK/EkeySDK/build/DerivedData-iOSSimulator/Build/Intermediates.noindex/ArchiveIntermediates/EkeySDK/InstallationBuildProductsLocation/usr/local/lib/EkeySDK.framework/EkeySDK'
 relocations:
   - { offset: 0x514EF, size: 0x8, addend: 0x0, symName: '_$s7EkeySDK0A27AuthorizationRequestBuilderO04makeD0AA0acD0VyFZ', symObjAddr: 0x0, symBinAddr: 0x14B8, symSize: 0x770 }
   - { offset: 0x51893, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledNameV2, symObjAddr: 0xF5C, symBinAddr: 0x2414, symSize: 0x50 }
