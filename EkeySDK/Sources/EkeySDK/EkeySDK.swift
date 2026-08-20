@@ -35,8 +35,8 @@ public final class Ekey {
         completion: @escaping (EkeyLoginResult) -> Void
     ) {
         let loginViewController = EkeyLoginViewController(
-            onCompleted: { [weak self] url in
-                self?.finish { completion(.completed(redirectURL: url)) }
+            onCompleted: { [weak self] url, codeVerifier in
+                self?.finish { completion(.completed(redirectURL: url, codeVerifier: codeVerifier)) }
             },
             onFailed: { [weak self] error in
                 self?.finish { completion(.failed(error)) }

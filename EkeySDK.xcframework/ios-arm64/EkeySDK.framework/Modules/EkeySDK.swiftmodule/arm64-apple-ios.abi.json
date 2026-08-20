@@ -52,12 +52,12 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(EkeySDK.EkeyLoginResult.Type) -> (Foundation.URL) -> EkeySDK.EkeyLoginResult",
+                "printedName": "(EkeySDK.EkeyLoginResult.Type) -> (Foundation.URL, Swift.String) -> EkeySDK.EkeyLoginResult",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(Foundation.URL) -> EkeySDK.EkeyLoginResult",
+                    "printedName": "(Foundation.URL, Swift.String) -> EkeySDK.EkeyLoginResult",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -68,13 +68,19 @@
                       {
                         "kind": "TypeNominal",
                         "name": "Tuple",
-                        "printedName": "(redirectURL: Foundation.URL)",
+                        "printedName": "(redirectURL: Foundation.URL, codeVerifier: Swift.String)",
                         "children": [
                           {
                             "kind": "TypeNominal",
                             "name": "URL",
                             "printedName": "Foundation.URL",
                             "usr": "s:10Foundation3URLV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
                           }
                         ]
                       }
@@ -97,8 +103,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:7EkeySDK0A11LoginResultO9completedyAC10Foundation3URLV_tcACmF",
-            "mangledName": "$s7EkeySDK0A11LoginResultO9completedyAC10Foundation3URLV_tcACmF",
+            "usr": "s:7EkeySDK0A11LoginResultO9completedyAC10Foundation3URLV_SStcACmF",
+            "mangledName": "$s7EkeySDK0A11LoginResultO9completedyAC10Foundation3URLV_SStcACmF",
             "moduleName": "EkeySDK",
             "declAttributes": [
               "RawDocComment"
@@ -783,7 +789,7 @@
     {
       "filePath": "\/Users\/syeddanish\/Desktop\/NEC Job\/EkeyExampleSDK\/EkeySDK\/Sources\/EkeySDK\/EkeyWebViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 264,
+      "offset": 272,
       "length": 5,
       "value": "false"
     }
