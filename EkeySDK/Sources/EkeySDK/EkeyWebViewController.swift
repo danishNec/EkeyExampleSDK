@@ -3,13 +3,13 @@ import WebKit
 
 final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate {
     let webView: WKWebView
-    private let onCompleted: (URL, String) -> Void
+    private let onCompleted: (URL, String, EkeyIdentityData) -> Void
     private let onFailed: (EkeyLoginError) -> Void
     private var didOpenEkeyApp = false
     private var expectedState: String?
     private var codeVerifier: String?
 
-    init(onCompleted: @escaping (URL, String) -> Void, onFailed: @escaping (EkeyLoginError) -> Void) {
+    init(onCompleted: @escaping (URL, String, EkeyIdentityData) -> Void, onFailed: @escaping (EkeyLoginError) -> Void) {
         self.onCompleted = onCompleted
         self.onFailed = onFailed
         webView = WKWebView()
@@ -69,10 +69,22 @@ final class EkeyWebViewController: NSObject, WKNavigationDelegate, WKUIDelegate 
         let urlString = url.absoluteString
 
         if urlString.hasPrefix(EkeyLoginConfig.redirectUri) {
-            if stateMatches(url), let codeVerifier {
-                onCompleted(url, codeVerifier)
-            } else {
+            let code = URLComponents(url: url, resolvingAgainstBaseURL: false)?
+                .queryItems?
+                .first(where: { $0.name == "code" })?
+                .value
+            guard stateMatches(url), let codeVerifier, let code else {
                 onFailed(.stateMismatch)
+                return true
+            }
+
+            EkeyTokenExchange.exchangeAndFetchKyc(code: code, codeVerifier: codeVerifier) { [onCompleted, onFailed] result in
+                switch result {
+                case .success(let identity):
+                    onCompleted(url, codeVerifier, identity)
+                case .failure(let error):
+                    onFailed(.tokenExchangeFailed(error))
+                }
             }
             return true
         }
